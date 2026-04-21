@@ -8,3 +8,45 @@
 
 # Claude Code local
 .claude/settings.local.json
+
+# ────────────────────────────────────────────────────────
+# 🚨 Secrets — 永遠不要 commit 下列檔案
+# ────────────────────────────────────────────────────────
+.env
+.env.local
+.env.*.local
+
+# Google OAuth 憑證
+credentials.json
+token.json
+service-account.json
+*/credentials/*.json
+**/credentials/*.json
+
+# Python
+__pycache__/
+*.pyc
+*.pyo
+*.egg-info/
+.pytest_cache/
+venv/
+.venv/
+
+# ────────────────────────────────────────────────────────
+# Agent 執行時的運行資料（每位使用者自己累積）
+# ────────────────────────────────────────────────────────
+
+# Pipeline 中的實際文章（只保留資料夾結構）
+pipeline/00-review/*
+pipeline/01-queue/*
+pipeline/02-in-progress/*
+pipeline/03-ready/*
+pipeline/04-published/*
+!pipeline/*/.gitkeep
+
+# Agent memory（每位使用者自己累積的記憶，只保留 README）
+agents/*/memory/*
+!agents/*/memory/README.md
+
+# Automation logs
+automation/logs/

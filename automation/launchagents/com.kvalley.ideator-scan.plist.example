@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<!--
+  Ideator 每日掃描 LaunchAgent 範本
+  使用方式：
+  1. 複製到 ~/Library/LaunchAgents/com.kvalley.ideator-scan.plist
+  2. 把 {{REPO_ROOT}} 替換成你 clone 這個 repo 的絕對路徑
+     例：/Users/yourname/workspace/kvalley-ai-content-system
+  3. 把 {{USERNAME}} 替換成你的 macOS 使用者名稱
+  4. 執行：launchctl load ~/Library/LaunchAgents/com.kvalley.ideator-scan.plist
+-->
+<plist version="1.0">
+<dict>
+    <key>Label</key>
+    <string>com.kvalley.ideator-scan</string>
+
+    <key>ProgramArguments</key>
+    <array>
+        <string>/opt/anaconda3/bin/python3</string>
+        <string>-m</string>
+        <string>ideator.daily_scan</string>
+    </array>
+
+    <key>StartCalendarInterval</key>
+    <dict>
+        <key>Hour</key>
+        <integer>13</integer>
+        <key>Minute</key>
+        <integer>0</integer>
+    </dict>
+
+    <!-- 開機/登入也跑一次；daily_scan.py 的 ran_today() 會防重複 -->
+    <key>RunAtLoad</key>
+    <true/>
+
+    <key>StandardOutPath</key>
+    <string>{{REPO_ROOT}}/automation/logs/ideator-launchd.log</string>
+
+    <key>StandardErrorPath</key>
+    <string>{{REPO_ROOT}}/automation/logs/ideator-launchd.err</string>
+
+    <key>WorkingDirectory</key>
+    <string>{{REPO_ROOT}}/automation</string>
+
+    <key>EnvironmentVariables</key>
+    <dict>
+        <key>PATH</key>
+        <string>/Users/{{USERNAME}}/.local/bin:/opt/anaconda3/bin:/usr/local/bin:/usr/bin:/bin</string>
+        <key>HOME</key>
+        <string>/Users/{{USERNAME}}</string>
+    </dict>
+</dict>
+</plist>

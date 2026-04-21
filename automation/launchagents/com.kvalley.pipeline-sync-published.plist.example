@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<!--
+  Pipeline Sync WatchPaths LaunchAgent 範本
+  上架後 10 秒內自動把 Sheet status 同步成「已上架」
+
+  使用方式：
+  1. 複製到 ~/Library/LaunchAgents/com.kvalley.pipeline-sync-published.plist
+  2. 把 {{REPO_ROOT}} 替換成你 clone 這個 repo 的絕對路徑
+  3. 把 {{USERNAME}} 替換成你的 macOS 使用者名稱
+  4. 執行：launchctl load ~/Library/LaunchAgents/com.kvalley.pipeline-sync-published.plist
+-->
+<plist version="1.0">
+<dict>
+    <key>Label</key>
+    <string>com.kvalley.pipeline-sync-published</string>
+
+    <key>ProgramArguments</key>
+    <array>
+        <string>/opt/anaconda3/bin/python3</string>
+        <string>-m</string>
+        <string>ideator.pipeline_sync</string>
+    </array>
+
+    <key>WatchPaths</key>
+    <array>
+        <string>{{REPO_ROOT}}/pipeline/04-published</string>
+    </array>
+
+    <key>ThrottleInterval</key>
+    <integer>10</integer>
+
+    <key>RunAtLoad</key>
+    <false/>
+
+    <key>StandardOutPath</key>
+    <string>{{REPO_ROOT}}/automation/logs/pipeline-sync-watcher.log</string>
+
+    <key>StandardErrorPath</key>
+    <string>{{REPO_ROOT}}/automation/logs/pipeline-sync-watcher.err</string>
+
+    <key>WorkingDirectory</key>
+    <string>{{REPO_ROOT}}/automation</string>
+
+    <key>EnvironmentVariables</key>
+    <dict>
+        <key>PATH</key>
+        <string>/Users/{{USERNAME}}/.local/bin:/opt/anaconda3/bin:/usr/local/bin:/usr/bin:/bin</string>
+        <key>HOME</key>
+        <string>/Users/{{USERNAME}}</string>
+    </dict>
+</dict>
+</plist>
