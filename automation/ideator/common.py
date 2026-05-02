@@ -5,7 +5,7 @@ from urllib.parse import urlparse, parse_qsl, urlencode, urlunparse
 from google.oauth2.credentials import Credentials
 from googleapiclient.discovery import build
 
-SPREADSHEET_ID = os.getenv('KVAI_SHEET_ID', '1RxSb3bArkcqVQmQyM6ppfRm9GAXCjdHxHLCgIWxro8U')
+SPREADSHEET_ID = os.getenv('KVAI_SHEET_ID', '<YOUR_SHEET_ID>')
 SHEET_NAME = os.getenv('KVAI_SHEET_NAME', '自動化題材庫 (回溯精華版)')
 # AGENT_DIR 指向自動化根目錄（含 token.json、.env），預設為 automation/ideator 的上兩層
 AGENT_DIR = os.getenv('KVAI_AGENT_DIR',

@@ -90,7 +90,7 @@ cp automation/.env.example automation/.env
 
 ### Step 4：Google Sheet + NotebookLM
 
-1. **建 Google Sheet：** 複製我們的 [題材庫範本](https://docs.google.com/spreadsheets/d/1RxSb3bArkcqVQmQyM6ppfRm9GAXCjdHxHLCgIWxro8U/edit)（如果是內部同事，用原本那張）
+1. **建 Google Sheet：** 複製我們的 [題材庫範本](https://docs.google.com/spreadsheets/d/<YOUR_SHEET_ID>/edit)（如果是內部同事，用原本那張）
 2. **申請 Google OAuth：** 依 Google 指示建立 OAuth Client，下載 `credentials.json` 放到 `automation/`
 3. **NotebookLM：** 用 [nlm CLI](https://github.com/google/notebooklm) 登入你的 Google 帳號
 
